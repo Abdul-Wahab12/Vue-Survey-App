@@ -1,47 +1,77 @@
 <template>
-    <div class="bg-blue-400 h-screen w-screen">
-    <div class="flex flex-col items-center flex-1 h-full justify-center px-4 sm:px-0">
-        <div class="flex rounded-lg shadow-lg w-full sm:w-3/4 lg:w-1/2 bg-white sm:mx-0" style="height: 500px">
-            <div class="flex flex-col w-full md:w-1/2 p-4">
-                <div class="flex flex-col flex-1 justify-center mb-8">
-                    <h1 class="text-4xl text-center font-thin">Login for free</h1>
-                    <div class="w-full mt-4">
-                        <form class="form-horizontal w-3/4 mx-auto" method="POST" action="#">
-                            <div class="flex flex-col mt-4">
-                                <input id="email" type="text" class="flex-grow h-8 px-2 border rounded border-grey-400" name="email" value="" placeholder="Email">
-                            </div>
-                            <div class="flex flex-col mt-4">
-                                <input id="password" type="password" class="flex-grow h-8 px-2 rounded border border-grey-400" name="password" required placeholder="Password">
-                            </div>
-                            <div class="flex items-center mt-4">
-                                <input type="checkbox" name="remember" id="remember" class="mr-2"> <label for="remember" class="text-sm text-grey-dark">Remember Me</label>
-                            </div>
-                            <div class="flex flex-col mt-8">
-                                <button type="submit" class="bg-blue-500 hover:bg-blue-700 text-white text-sm font-semibold py-2 px-4 rounded">
-                                    Login
-                                </button>
-                            </div>
-                        </form>
-                        <div class="text-center mt-4">
-                            <a class="no-underline hover:underline text-blue-dark text-xs" href="#">
-                                Forgot Your Password?
-                            </a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="hidden md:block md:w-1/2 rounded-r-lg" style="background: url('https://images.unsplash.com/photo-1515965885361-f1e0095517ea?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=3300&q=80'); background-size: cover; background-position: center center;"></div>
-        </div>
+      <div>
+      <img
+        class="mx-auto h-12 w-auto"
+        src="https://tailwindui.com/img/logos/workflow-mark-indigo-600.svg"
+        alt="Workflow"
+      />
+      <h2 class="mt-6 text-center text-3xl font-extrabold text-gray-900">
+        Sign in to your account
+      </h2>
+      <p class="mt-2 text-center text-sm text-gray-600">
+        Or
+        {{ " " }}
+        <router-link
+          :to="{ name: 'Register' }"
+          class="font-medium text-indigo-600 hover:text-indigo-500"
+        >
+          register for free
+        </router-link>
+      </p>
     </div>
-</div>
-</template>
+    <form class="mt-8 space-y-6" @submit="login">
+      <input type="hidden" name="remember" value="true" />
+      <div class="rounded-md shadow-sm -space-y-px">
+        <div>
+          <label for="email-address" class="sr-only">Email address</label>
+          <input
+            id="email-address"
+            name="email"
+            type="email"
+            autocomplete="email"
+            required=""
+            class="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-t-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm"
+            placeholder="Email address"
+          />
+        </div>
+        <div>
+          <label for="password" class="sr-only">Password</label>
+          <input
+            id="password"
+            name="password"
+            type="password"
+            autocomplete="current-password"
+            required=""
+            class="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-b-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm"
+            placeholder="Password"
+          />
+        </div>
+      </div>
+  
+      <div class="flex items-center justify-between">
+        <div class="flex items-center">
+          <input
+            id="remember-me"
+            name="remember-me"
+            type="checkbox"
+            class="h-4 w-4 text-indigo-600 focus:ring-indigo-500 border-gray-300 rounded"
+          />
+          <label for="remember-me" class="ml-2 block text-sm text-gray-900">
+            Remember me
+          </label>
+        </div>
+      </div>
+  
+      <div>
+        <button
+          type="submit"
+          class="group relative w-full flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
+          Sign in
+        </button>
+      </div>
+    </form>
+  </template>
+  
+  <script setup>
 
-<script>
-export default {
-    name: 'Login'
-}
-</script>
-
-<style scoped>
-
-</style>
+  </script>
