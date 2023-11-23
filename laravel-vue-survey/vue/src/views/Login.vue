@@ -32,6 +32,7 @@
             required=""
             class="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-t-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm"
             placeholder="Email address"
+            v-model="user.email"
           />
         </div>
         <div>
@@ -44,6 +45,7 @@
             required=""
             class="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-b-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm"
             placeholder="Password"
+            v-model="user.password"
           />
         </div>
       </div>
@@ -55,6 +57,7 @@
             name="remember-me"
             type="checkbox"
             class="h-4 w-4 text-indigo-600 focus:ring-indigo-500 border-gray-300 rounded"
+            v-model="user.remember"
           />
           <label for="remember-me" class="ml-2 block text-sm text-gray-900">
             Remember me
@@ -72,6 +75,25 @@
     </form>
   </template>
   
-  <script setup>
+<script setup>
+import store from '../store';
+import { useRouter } from 'vue-router';
 
-  </script>
+const router = useRouter();
+
+const user = {
+  email: '',
+  password: '',
+  remember: false
+};
+
+function login(ev) {
+  ev.preventDefault();
+  store.dispatch('login', user)
+  .then((res) => {
+    router.push({
+      name: 'Dashboard'
+    })
+  })
+}
+</script>
