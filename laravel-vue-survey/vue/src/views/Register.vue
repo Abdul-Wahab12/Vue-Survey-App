@@ -72,6 +72,7 @@ function register(ev) {
         router.push({
             name: 'Dashboard'
         });
+        console.log("response", res);
     })
     console.log("User:", user)
 }
