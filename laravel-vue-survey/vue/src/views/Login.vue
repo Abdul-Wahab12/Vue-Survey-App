@@ -78,6 +78,7 @@
 <script setup>
 import store from '../store';
 import { useRouter } from 'vue-router';
+import { ref } from 'vue';
 
 const router = useRouter();
 
@@ -86,6 +87,7 @@ const user = {
   password: '',
   remember: false
 };
+let errorMsg = ref('');
 
 function login(ev) {
   ev.preventDefault();
@@ -94,6 +96,9 @@ function login(ev) {
     router.push({
       name: 'Dashboard'
     })
+  })
+  .catch((err) => {
+    errorMsg.value = err.response.data;
   })
 }
 </script>
