@@ -146,7 +146,8 @@ const store = createStore({
         user: {
             data: {},
             token: sessionStorage.getItem("TOKEN"),
-        }
+        },
+        surveys: [...tmpSurveys]
     },
     mutations: {
         logout: (state) => {
