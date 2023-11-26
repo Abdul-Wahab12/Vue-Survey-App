@@ -71,9 +71,23 @@
                             v-model="model.title"
                             autocomplete="survey_title"
                             class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md"
-                        >
+                        />
                     </div>
                     <!-- Title End -->
+
+                    <!-- Description -->
+                    <div>
+                        <label 
+                            for="about"
+                            class="block text-sm font-medium text-gray-700"
+                        >
+                            Description
+                        </label>
+                        <div class="mt-1">
+                            <textarea name="description" id="description" rows="3"></textarea>
+                        </div>
+                    </div>
+                    <!-- Description End -->
                 </div>
             </div>
         </form>
