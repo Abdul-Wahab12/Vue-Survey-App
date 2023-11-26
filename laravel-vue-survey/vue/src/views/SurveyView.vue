@@ -9,9 +9,9 @@
         </template>
         <form @submit.prevent="saveSurvey">
             <div class="shadow sm:rounded-md sm:overflow-hidden">
-                <!-- Survey Fields -->
+                <!-- Survey Fields Section Start-->
                 <div class="px-4 py-5 bg-white space-y-6 sm:p-6">
-                    <!-- Image -->
+                    <!-- Image Section Start -->
                     <div>
                         <label class="block text-sm font-medium text-gray-700">
                             Image
@@ -54,9 +54,9 @@
                             </button>
                         </div>
                     </div>
-                    <!-- Image End -->
+                    <!-- Image Section End -->
 
-                    <!-- Title -->
+                    <!-- Title Section Start-->
                     <div>
                         <label 
                             for="title" 
@@ -73,9 +73,9 @@
                             class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md"
                         />
                     </div>
-                    <!-- Title End -->
+                    <!-- Title Section End -->
 
-                    <!-- Description -->
+                    <!-- Description Section Start-->
                     <div>
                         <label 
                             for="about"
@@ -84,10 +84,67 @@
                             Description
                         </label>
                         <div class="mt-1">
-                            <textarea name="description" id="description" rows="3"></textarea>
+                            <textarea 
+                                name="description" 
+                                id="description" 
+                                rows="3"
+                                v-model="model.description"
+                                autocomplete="survey_description"
+                                class="shadow-sm focus:ring-indigo-500 focus:border-indigo-500 mt-1 w-full block sm:text-sm border border-gray-300 rounded-md"
+                                placeholder="Describe your survey"
+                            />
                         </div>
                     </div>
-                    <!-- Description End -->
+                    <!-- Description Section End -->
+
+                    <!-- Expire Date Section Start -->
+                    <div>
+                        <label 
+                            for="expire_date"
+                            class="block text-sm font-medium text-gray-700"
+                        >
+                            Expire Date
+                        </label>
+                        <input 
+                            type="date"
+                            name="expire_date"
+                            id="expire_date"
+                            v-model="model.expire_date"
+                            class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border border-gray-300 rounded-md"
+                        />
+                    </div>
+                    <!-- Expire Date Section End -->
+
+                    <!-- Status Section Start -->
+                    <div class="flex items-start">
+                        <div class="flex items-center h-5">
+                            <input 
+                                type="checkbox"
+                                id="status"
+                                name="status"
+                                v-model="model.status"
+                                class="focus:ring-indigo-500 w-4 h-4 text-indigo-600 border-gray-300 rounded"
+                            >
+                        </div>
+                        <div class="ml-3 text-sm">
+                            <label 
+                                for="status"
+                                class="font-medium text-gray-700"
+                            >
+                                Active
+                            </label>
+                        </div>
+                    </div>
+                    <!-- Status Section End-->
+                </div>
+                <!-- Surveys Fields Section End -->
+                <div class="px-4 py-3 bg-gray-50 text-right sm:px-6">
+                    <button
+                        type="submit"
+                        class="inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
+                    >
+                        Save
+                    </button>
                 </div>
             </div>
         </form>
