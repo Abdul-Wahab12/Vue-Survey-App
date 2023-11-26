@@ -46,10 +46,34 @@
                                 type="button"
                                 class="relative overflow-hidden ml-5 bg-white py-2 px-3 border border-gray-300 rounded-md shadow-sm text-sm leading-4 font-medium text-gray-700 hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
                             >
+                                <input 
+                                    type="file"
+                                    class="absolute left-0 top-0 right-0 bottom-0 opacity-0 cursor-pointer"
+                                >
                                 Change
                             </button>
                         </div>
                     </div>
+                    <!-- Image End -->
+
+                    <!-- Title -->
+                    <div>
+                        <label 
+                            for="title" 
+                            class="block text-sm font-medium text-gray-500"
+                        >
+                            Title
+                        </label>
+                        <input 
+                            type="text"
+                            name="title"
+                            id="title"
+                            v-model="model.title"
+                            autocomplete="survey_title"
+                            class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md"
+                        >
+                    </div>
+                    <!-- Title End -->
                 </div>
             </div>
         </form>
