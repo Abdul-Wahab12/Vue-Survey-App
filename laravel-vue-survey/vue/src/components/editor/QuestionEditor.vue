@@ -70,7 +70,7 @@
                 @change="typeChange"
                 class="mt-1 block w-full py-2 px-3 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
             >
-              <option v-for="type in questionType" :key="type" :value="type">
+              <option v-for="type in questionTypes" :key="type" :value="type">
                 {{ upperCaseFirst(type) }}
               </option>
             </select>
@@ -139,7 +139,7 @@
                 <button
                     type="button"
                     @click="removeOption(option)"
-                    class="h-6 w-6 rounded-full flex items-center justify-center border border-transparent transition-colors hover:border-red-100"
+                    class="h-6 w-6 rounded-full flex items-center justify-center border border-transparent transition-colors text-red-500 hover:border-red-500"
                 >
                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
                         stroke="currentColor" class="w-6 h-6">
@@ -156,7 +156,8 @@
 </template>
 
 <script setup>
-import { ref } from 'vue';
+import { ref, computed } from 'vue';
+import store from '../../store/index.js';
 
 const props = defineProps({
     question: Object,
@@ -168,6 +169,57 @@ const emit = defineEmits(["change", "addQuestion", "deleteQuestion"]);
 // Re-create the whole question data to avoid unintentional reference change
 const model = ref(JSON.parse(JSON.stringify(props.question)))
 console.log("Model :",model);
+
+const questionTypes = computed(() => store.state.questionTypes);
+
+function upperCaseFirst(str) {
+    return str.charAt(0).toUpperCase() + str.slice(1);
+}
+
+// Check if the question should have options
+
+function shouldHaveOptions() {
+    return ["select", "radio", "checkbox"].includes(model.value.type);
+}
+
+function getOptions() {
+    return model.value.data.options;
+}
+
+function setOptions(options) {
+    model.value.data.options = options; 
+}
+
+// Add option
+function addOption() {
+    setOptions([
+        ...getOptions(),
+        { uuid: uuidv4(), text: "" },
+    ]);
+    dataChange();
+}
+
+// Remove option
+function removeOption(op) {
+    setOptions(getOptions().filter((opt) => opt !== op ));
+    dataChange();
+}
+
+function typeChange() {
+    if(shouldHaveOptions()) {
+        setOptions(getOptions() || []);
+    }
+    dataChange();
+}
+
+// Emit the data change
+function dataChange() {
+    const data  = model.value;
+    if(!shouldHaveOptions()) {
+        delete data.data.options;
+    }
+}
+
 </script>
 
 <style scoped></style>
