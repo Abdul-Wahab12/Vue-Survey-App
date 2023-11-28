@@ -2,9 +2,9 @@
     <!-- Question index -->
     <div class="flex items-center justify-between">
         <h3 class="text-lg font-bold">
-            {{ index + 1 }}. {{ model.question }}
+            {{ index + 1 }}. {{ model.question }} 
         </h3>
-        <div class="flex items-center">
+        <div class="mt-12 flex items-center">
             <!-- Add new question -->
             <button 
                 type="button" 
@@ -57,14 +57,47 @@
 
         <!-- Question Type -->
         <div class="mt-3 col-span-3">
-
+            <label 
+                for="question_type"
+                class="block text-sm font-medium text-gray-700"
+            >
+                Select Question Type
+            </label>
+            <select 
+                id="question_type"
+                name="question_type"
+                v-model="model.type"
+                @change="typeChange"
+                class="mt-1 block w-full py-2 px-3 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
+            >
+              <option v-for="type in questionType" :key="type" :value="type">
+                {{ upperCaseFirst(type) }}
+              </option>
+            </select>
         </div>
         <!--/ Question Type -->
     </div>
 
     <!-- Question Description -->
-
+    <div class="mt-3 col-span-9">
+        <label 
+            :for="'question_description_' + model.id"
+            class="block text-sm font-medium text-gray-700"
+        >
+        Description
+    </label>
+    <textarea 
+        :name="'question_description_' + model.id" 
+        v-model="model.description" 
+        @change="dataChange"
+        :id="'question_description_' + model.id"
+        class="mt-1 focus:ring-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md"
+    />
+    </div>
     <!--/ Question Description -->
+
+    <!-- Data -->
+    <!--/ Data -->
 </template>
 
 <script setup>
@@ -79,7 +112,7 @@ const emit = defineEmits(["change", "addQuestion", "deleteQuestion"]);
 
 // Re-create the whole question data to avoid unintentional reference change
 const model = ref(JSON.parse(JSON.stringify(props.question)))
-// console.log("Model :",model);
+console.log("Model :",model);
 </script>
 
 <style scoped></style>
