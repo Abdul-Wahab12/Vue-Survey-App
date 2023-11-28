@@ -100,11 +100,20 @@
                             Add Question
                         </button>
                     </h3>
-                    <div v-if="!model.questions.length" class="text-center text-gray-600">
-                        You don't have any questions created
-                    </div>
                 </div>
                 <!-- Add New Question Section End -->
+                <div v-if="!model.questions.length" class="text-center text-gray-600">
+                    You don't have any questions created
+                </div>
+
+                <div v-for="(question, index) in model.questions" :key="question.id">
+                    <QuestionEditor 
+                        :question="question"
+                        :index="index"
+                        @change="questionChange"
+                        @addQuestion="addQuestion"
+                    />
+                </div>
                 <div class="px-4 py-3 bg-gray-50 text-right sm:px-6">
                     <button type="submit"
                         class="inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
@@ -122,6 +131,7 @@ import { ref } from 'vue';
 import { useRoute } from 'vue-router';
 
 import PageComponent from '../components/PageComponent.vue';
+import QuestionEditor from '../components/editor/QuestionEditor.vue';
 
 const route = useRoute();
 
